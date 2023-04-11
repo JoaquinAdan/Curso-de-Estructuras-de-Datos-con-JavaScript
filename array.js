@@ -39,10 +39,10 @@ class MyArray {
       for (let i = this.length - 1; i >= 0; i--) {            //   for (let i = 2; 2>=0 ; i--) {
         this.data[i + 1] = this.data[i];                      //     data[3] = data[2]    { 0, 1, 2 } {0, 1, 2, 3} el 3 antes era 2.         
       }                                                       //   } genera un espacio nuevo y lo rellena con el espacio anterior data[3] es nuevo y mueve el [2] al [3]
-    }                                                         //
-    this.data[0] = item;                                      //
-    this.length++;                                            //
-    return this.length;
+    }                                                         // }
+    this.data[0] = item;                                      // data[0] que ahora esta vacio lo rellenamos con el parametro recibido
+    this.length++;                                            // 3+1sumamos 1 a length
+    return this.length;                                       // return 4
   }
   shift() {
     const firstItem = this.data[0];
