@@ -9,12 +9,12 @@ let singlyLinkedList = {
         value: 3,
         next: {
           value: 4,
-          next: null
-        }
-      }
-    }
-  }
-}
+          next: null,
+        },
+      },
+    },
+  },
+};
 
 class Node {
   constructor(value) {
@@ -27,18 +27,18 @@ class MySingleLinkedList {
   constructor(value) {
     this.head = {
       value: value,
-      next: null
-    }
-    this.tail = this.head
-    this.length = 1
+      next: null,
+    };
+    this.tail = this.head;
+    this.length = 1;
   }
-  checkNode(node){
-    if(!node.next){
+  checkNode(node) {
+    if (!node.next) {
       return node;
     }
     return this.checkNode(node.next);
   }
-  append(val){
+  append(val) {
     const newNode = new Node(val);
     const lastNode = this.checkNode(this.head);
     lastNode.next = newNode;
@@ -46,9 +46,18 @@ class MySingleLinkedList {
     this.length++;
     return this.head;
   }
+  prepend(value) {
+    const newNode = new Node(value);
+    newNode.next = this.head;
+    this.head = newNode;
+    this.length++;
+    return this
+  }
 }
 
-let myLinkedList =  new MySingleLinkedList(1);
-myLinkedList.append(2)
-myLinkedList.append(3)
+let myLinkedList = new MySingleLinkedList(1);
+myLinkedList.append(2);
+myLinkedList.append(3);
+myLinkedList.append(4);
+myLinkedList.append(5);
 console.log(myLinkedList);
