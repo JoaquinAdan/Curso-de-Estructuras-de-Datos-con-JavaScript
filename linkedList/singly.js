@@ -51,13 +51,32 @@ class MySingleLinkedList {
     newNode.next = this.head;
     this.head = newNode;
     this.length++;
-    return this
+    return this;
+  }
+  // video por el minuto 6:50 del 18
+  getTheIndex(index) {}
+  insert(index, value) {
+    if (this.length === 0) return this.append(value);
+    if (index >= this.length) {
+    }
+    const newNode = new Node(value);
+    const intermediateNode = this.getTheIndex(index - 1);
+
+    this.length++;
+  }
+  remove(index) {
+    const previousPointer = this.getTheIndex(index - 1);
+    const holdingPointer = this.getTheIndex(index + 1);
+
+    previousPointer.next = holdingPointer;
+
+    this.length--;
+
+    return this;
   }
 }
 
 let myLinkedList = new MySingleLinkedList(1);
 myLinkedList.append(2);
 myLinkedList.append(3);
-myLinkedList.append(4);
-myLinkedList.append(5);
 console.log(myLinkedList);
