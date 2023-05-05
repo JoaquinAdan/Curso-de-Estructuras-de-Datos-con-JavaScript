@@ -33,9 +33,8 @@ class MySingleLinkedList {
     this.length = 1;
   }
   checkNode(node) {
-    if (!node.next) {
-      return node;
-    }
+    if (!node.next) return node;
+
     return this.checkNode(node.next);
   }
   append(val) {
@@ -53,6 +52,23 @@ class MySingleLinkedList {
     this.length++;
     return this;
   }
+  // video por el minuto 6:50 del 18
+
+  insert(index, value) {
+    if (index >= this.length) return this.append(value);
+    if (index === 0) return this.prepend(value);
+
+    const newNode = new Node(value);
+    const firstPointer = this.getTheIndex(index - 1);
+    const holdingPointer = firstPointer.next;
+    firstPointer.next = newNode;
+    newNode.next = holdingPointer;
+
+    this.length++;
+
+    return this;
+  }
+
   getTheIndex(index) {
     let counter = 0;
     let currentNode = this.head;
@@ -61,17 +77,6 @@ class MySingleLinkedList {
       counter++;
     }
     return currentNode;
-  }
-  insert(index, value) {
-    if (index >= this.length) return this.append(value);
-    const newNode = new Node(value);
-    const firstPointer = this.getTheIndex(index - 1);
-    const holdingPointer = firstPointer.next;
-    firstPointer.next = newNode;
-    newNode.next = holdingPointer;
-
-    this.length++;
-    return this;
   }
   remove(index) {
     const previousPointer = this.getTheIndex(index - 1);
@@ -88,4 +93,9 @@ class MySingleLinkedList {
 let myLinkedList = new MySingleLinkedList(1);
 myLinkedList.append(2);
 myLinkedList.append(3);
+myLinkedList.append(4);
+myLinkedList.insert(3, 'hola');
+myLinkedList.remove(3);
+myLinkedList.remove(1);
+// myLinkedList.remove(3);
 console.log(myLinkedList);
