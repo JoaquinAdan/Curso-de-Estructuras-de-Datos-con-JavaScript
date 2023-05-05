@@ -53,7 +53,6 @@ class MySingleLinkedList {
     this.length++;
     return this;
   }
-  // video por el minuto 6:50 del 18
   getTheIndex(index) {
     let counter = 0;
     let currentNode = this.head;
@@ -61,6 +60,7 @@ class MySingleLinkedList {
       currentNode = currentNode.next;
       counter++;
     }
+    return currentNode;
   }
   insert(index, value) {
     if (index >= this.length) return this.append(value);
@@ -71,6 +71,7 @@ class MySingleLinkedList {
     newNode.next = holdingPointer;
 
     this.length++;
+    return this;
   }
   remove(index) {
     const previousPointer = this.getTheIndex(index - 1);
