@@ -22,28 +22,22 @@ class Node {
     this.next = null;
   }
 }
-
-class MySingleLinkedList {
+class MySinglyLinkedList {
   constructor(value) {
     this.head = {
       value: value,
       next: null,
     };
+
     this.tail = this.head;
     this.length = 1;
   }
-  checkNode(node) {
-    if (!node.next) return node;
-
-    return this.checkNode(node.next);
-  }
-  append(val) {
-    const newNode = new Node(val);
-    const lastNode = this.checkNode(this.head);
-    lastNode.next = newNode;
+  append(value) {
+    const newNode = new Node(value);
+    this.tail.next = newNode;
     this.tail = newNode;
     this.length++;
-    return this.head;
+    return this;
   }
   prepend(value) {
     const newNode = new Node(value);
@@ -52,23 +46,18 @@ class MySingleLinkedList {
     this.length++;
     return this;
   }
-  // video por el minuto 6:50 del 18
-
   insert(index, value) {
-    if (index >= this.length) return this.append(value);
-    if (index === 0) return this.prepend(value);
-
+    if (index >= this.length) {
+      return this.append(value);
+    }
     const newNode = new Node(value);
     const firstPointer = this.getTheIndex(index - 1);
     const holdingPointer = firstPointer.next;
     firstPointer.next = newNode;
     newNode.next = holdingPointer;
-
     this.length++;
-
     return this;
   }
-
   getTheIndex(index) {
     let counter = 0;
     let currentNode = this.head;
@@ -89,13 +78,9 @@ class MySingleLinkedList {
     return this;
   }
 }
-
-let myLinkedList = new MySingleLinkedList(1);
+let myLinkedList = new MySinglyLinkedList(1);
 myLinkedList.append(2);
 myLinkedList.append(3);
 myLinkedList.append(4);
-myLinkedList.insert(3, 'hola');
 myLinkedList.remove(3);
-myLinkedList.remove(1);
-// myLinkedList.remove(3);
 console.log(myLinkedList);
